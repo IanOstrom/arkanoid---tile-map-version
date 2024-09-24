@@ -1,6 +1,7 @@
 namespace SpriteKind {
     export const Ball = SpriteKind.create()
     export const Detector = SpriteKind.create()
+    export const Text = SpriteKind.create()
 }
 function advanceLevel () {
     if (level > lastLevel) {
@@ -9,7 +10,7 @@ function advanceLevel () {
         totalScoreNeeded += levelScoresNeeded[level]
         tiles.setCurrentTilemap(levelMaps[level])
         level += 1
-        game.splash("Level " + level)
+        levelTextSprite.sayText("Level " + level, 2000, false)
         sprites.destroyAllSpritesOfKind(SpriteKind.Ball)
         sprites.destroyAllSpritesOfKind(SpriteKind.Player)
         spawnPaddle()
@@ -22,9 +23,9 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
 })
 function spawnDetector () {
     detector = sprites.create(img`
-        1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-        1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-        1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
+        ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+        ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+        ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
         `, SpriteKind.Detector)
     detector.y = 120
 }
@@ -63,12 +64,18 @@ sprites.onOverlap(SpriteKind.Ball, SpriteKind.Detector, function (sprite, otherS
     info.changeLifeBy(-1)
     spawnBall()
 })
+function spawnLevelTextSprite () {
+    levelTextSprite = sprites.create(img`
+        f 
+        `, SpriteKind.Text)
+    levelTextSprite.y += 20
+}
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Ball, function (sprite, otherSprite) {
     bounceBall(otherSprite)
     otherSprite.y = sprite.top - 1
 })
 function spawnPaddle () {
-    paddle = sprites.create(assets.image`normal paddle`, SpriteKind.Player)
+    paddle = sprites.create(assets.image`giant paddle`, SpriteKind.Player)
     paddle.setPosition(80, 107)
     controller.moveSprite(paddle, paddleSpeed, 0)
     paddle.setStayInScreen(true)
@@ -79,6 +86,7 @@ let paddle: Sprite = null
 let detector: Sprite = null
 let ballFrozen = false
 let ball: Sprite = null
+let levelTextSprite: Sprite = null
 let paddleSpeed = 0
 let ballSpeed = 0
 let lastLevel = 0
@@ -93,6 +101,7 @@ level = 0
 lastLevel = levelScoresNeeded.length - 1
 ballSpeed = 800
 paddleSpeed = 150
+spawnLevelTextSprite()
 spawnDetector()
 advanceLevel()
 game.onUpdate(function () {
