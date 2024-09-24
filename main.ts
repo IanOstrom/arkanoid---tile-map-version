@@ -1,5 +1,6 @@
 namespace SpriteKind {
     export const Ball = SpriteKind.create()
+    export const Detector = SpriteKind.create()
 }
 function advanceLevel () {
     if (level > lastLevel) {
@@ -15,14 +16,18 @@ function advanceLevel () {
         spawnBall()
     }
 }
-sprites.onOverlap(SpriteKind.Player, SpriteKind.Ball, function (sprite, otherSprite) {
-    bounceBall(otherSprite)
-    otherSprite.y = sprite.top - 1
-})
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     ball.setVelocity(ballSpeed, ballSpeed * -1)
     ballFrozen = false
 })
+function spawnDetector () {
+    detector = sprites.create(img`
+        1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
+        1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
+        1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
+        `, SpriteKind.Detector)
+    detector.y = 120
+}
 function spawnBall () {
     ball = sprites.create(img`
         1 1 1 1 
@@ -53,6 +58,15 @@ scene.onOverlapTile(SpriteKind.Ball, assets.tile`myTile1`, function (sprite, loc
     tiles.setTileAt(location, assets.tile`myTile0`)
     info.changeScoreBy(1)
 })
+sprites.onOverlap(SpriteKind.Ball, SpriteKind.Detector, function (sprite, otherSprite) {
+    sprites.destroy(sprite)
+    info.changeLifeBy(-1)
+    spawnBall()
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Ball, function (sprite, otherSprite) {
+    bounceBall(otherSprite)
+    otherSprite.y = sprite.top - 1
+})
 function spawnPaddle () {
     paddle = sprites.create(assets.image`normal paddle`, SpriteKind.Player)
     paddle.setPosition(80, 107)
@@ -62,6 +76,7 @@ function spawnPaddle () {
 let ballVy = 0
 let ballVx = 0
 let paddle: Sprite = null
+let detector: Sprite = null
 let ballFrozen = false
 let ball: Sprite = null
 let paddleSpeed = 0
@@ -78,6 +93,7 @@ level = 0
 lastLevel = levelScoresNeeded.length - 1
 ballSpeed = 800
 paddleSpeed = 150
+spawnDetector()
 advanceLevel()
 game.onUpdate(function () {
     if (info.score() >= totalScoreNeeded) {
