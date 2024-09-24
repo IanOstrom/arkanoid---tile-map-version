@@ -1,0 +1,17 @@
+{
+    "muNQmWQ4)(yLD8VSXTQ}": {
+        "data": "hwSgAAcAAAD/mfkP/5n5D/+Z+Q//mfkP/5n5D/+Z+Q//mfkP/5n5D/+Z+Q//mfkP/5n5D/+Z+Q//mfkP/5n5D/+Z+Q//mfkP/5n5D/+Z+Q//mfkP/5n5D/+Z+Q//mfkP/5n5D/+Z+Q//mfkP/5n5D/+Z+Q//mfkP/5n5D/+Z+Q//mfkP/5n5D/+Z+Q//mfkP/5n5D/+Z+Q//mfkP/5n5D/+Z+Q//mfkP/5n5D/+Z+Q//mfkP/5n5D/+Z+Q//mfkP/5n5D/+Z+Q//mfkP/5n5D/+Z+Q//mfkP/5n5D/+Z+Q//mfkP/5n5D/+Z+Q//mfkP/5n5D/+Z+Q//mfkP/5n5D/+Z+Q//mfkP/5n5D/+Z+Q//mfkP/5n5D/+Z+Q//mfkP/5n5D/+Z+Q//mfkP/5n5D/+Z+Q//mfkP/5n5D/+Z+Q//mfkP/5n5D/+Z+Q//mfkP/5n5D/+Z+Q//mfkP/5n5D/+Z+Q//mfkP/5n5D/+Z+Q//mfkP/5n5D/+Z+Q//mfkP/5n5D/+Z+Q//mfkP/5n5D/+Z+Q//mfkP/5n5D/+Z+Q//mfkP/5n5D/+Z+Q//mfkP/5n5D/+Z+Q//mfkP/5n5D/+Z+Q//mfkP/5n5D/+Z+Q//mfkP/5n5D/+Z+Q//mfkP/5n5D/+Z+Q//mfkP/5n5D/+Z+Q//mfkP/5n5D/+Z+Q//mfkP/5n5D/+Z+Q//mfkP/5n5D/+Z+Q//mfkP/5n5D/+Z+Q//mfkP/5n5D/+Z+Q//mfkP/5n5D/+Z+Q//mfkP/5n5D/+Z+Q//mfkP/5n5D/+Z+Q//mfkP/5n5D/+Z+Q//mfkP/5n5D/+Z+Q//mfkP/5n5D/+Z+Q//mfkP/5n5D/+Z+Q//mfkP",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "giant paddle"
+    },
+    "image1": {
+        "data": "hwQUAAcAAAD/mfkP/5n5D/+Z+Q//mfkP/5n5D/+Z+Q//mfkP/5n5D/+Z+Q//mfkP/5n5D/+Z+Q//mfkP/5n5D/+Z+Q//mfkP/5n5D/+Z+Q//mfkP/5n5Dw==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "normal paddle"
+    },
+    "*": {
+        "mimeType": "image/x-mkcd-f4",
+        "dataEncoding": "base64",
+        "namespace": "myImages"
+    }
+}

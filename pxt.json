@@ -2,7 +2,8 @@
     "name": "Arkanoid - Tile Map Version",
     "description": "",
     "dependencies": {
-        "device": "*"
+        "device": "*",
+        "arcade-story": "github:microsoft/arcade-storytelling#v1.0.3"
     },
     "files": [
         "main.blocks",
@@ -10,7 +11,9 @@
         "README.md",
         "assets.json",
         "tilemap.g.jres",
-        "tilemap.g.ts"
+        "tilemap.g.ts",
+        "images.g.jres",
+        "images.g.ts"
     ],
     "testFiles": [
         "test.ts"
