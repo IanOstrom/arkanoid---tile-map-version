@@ -2,17 +2,18 @@ namespace SpriteKind {
     export const Ball = SpriteKind.create()
 }
 function advanceLevel () {
+    totalScoreNeeded += levelScoresNeeded[level]
     tiles.setCurrentTilemap(levelMaps[level])
     level += 1
     game.splash("Level " + level)
+    sprites.destroyAllSpritesOfKind(SpriteKind.Ball)
+    sprites.destroyAllSpritesOfKind(SpriteKind.Player)
+    spawnPaddle()
     spawnBall()
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Ball, function (sprite, otherSprite) {
     bounceBall(otherSprite)
     otherSprite.y = sprite.top - 1
-})
-controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
-    advanceLevel()
 })
 function spawnBall () {
     ball = sprites.create(img`
@@ -65,11 +66,18 @@ let ball: Sprite = null
 let paddleSpeed = 0
 let ballSpeed = 0
 let level = 0
+let levelScoresNeeded: number[] = []
 let levelMaps: tiles.TileMapData[] = []
+info.setScore(1)
 levelMaps = [tilemap`level2`, tilemap`level0`, tilemap`level9`]
+levelScoresNeeded = [20, 25, 25]
+let totalScoreNeeded = 0
 level = 0
-ballSpeed = 100
+ballSpeed = 800
 paddleSpeed = 150
-info.setScore(0)
 advanceLevel()
-spawnPaddle()
+game.onUpdate(function () {
+    if (info.score() >= totalScoreNeeded) {
+        advanceLevel()
+    }
+})
